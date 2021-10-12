@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private  int PERMISSION_CODE=1;
     private String cityName;
+    private double locationLongitude,locationLatitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},PERMISSION_CODE);
         }
         Location location =locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        cityName=getCityName(location.getLongitude(),location.getLatitude());
-        getWeatherInfo(cityName);
+         locationLongitude = location.getLongitude();
+         locationLatitude = location.getLatitude();
+         cityName=getCityName(locationLongitude,locationLatitude);
+         getWeatherInfo(cityName);
 
 
         searchIV.setOnClickListener(new View.OnClickListener() {
